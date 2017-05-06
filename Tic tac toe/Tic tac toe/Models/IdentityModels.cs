@@ -23,11 +23,16 @@ namespace Tic_tac_toe.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+
+            {
+                Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            }
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+       public  DbSet<Game> Games {get; set;}
     }
 }
